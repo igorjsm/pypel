@@ -60,10 +60,10 @@ ROOT_URLCONF = "config.urls"
 
 
 # Integra com o sistema de auth padrao do Django
-# AUTH_USER_MODEL = 'cadastros.Usuario'
+AUTH_USER_MODEL = "cadastros.Usuario"
 
 AUTHENTICATION_BACKENDS = [
-    # "cadastros.backends.EmailBackend",  # Backend de autenticacao personalizado
+    "cadastros.backends.EmailBackend",  # Backend de autenticacao personalizado
     "django.contrib.auth.backends.ModelBackend",  # Backend de autenticacao padrao
 ]
 
