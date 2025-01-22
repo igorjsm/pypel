@@ -1,0 +1,28 @@
+PYPEL - SISTEMA DE GERENCIAMENTO DE PAPELARIA
+VERSÃO 0.01 - sistema de autenticação - 22/01/2025
+
+https://github.com/igorjsm/pypel
+Igor José Silveira Martins
+igor.silveira1603@gmail.com
+
+1. ABNT
+MARTINS, Igor José S. PYPEL - Sistema de Gerenciamento de Papelaria. [S.l.]: [s.n.], 2025. Disponível em: https://github.com/igorjsm/pypel
+Acesso em: [data de acesso]
+
+2. IEEE
+I. J. S. MARTINS, "PYPEL - Sistema de Gerenciamento de Papelaria" [online].
+Disponível em: https://github.com/igorjsm/pypel
+[Acesso em: dia, mes, ano]
+
+3. APA
+Martins, I. J. S. (2025). PYPEL - Sistema de Gerenciamento de Papelaria.
+Acesso em: [data de acesso], de https://github.com/igorjsm/pypel
+
+4. BibTeX
+@misc{martins2025pypel,
+    author = {Martins, Igor José Silveira},
+    title = {PYPEL - Sistema de Gerenciamento de Papelaria},
+    year = {2025},
+    howpublished = {\url{https://github.com/igorjsm/pypel}},
+    note = {Acessado em: data de acesso}
+}
