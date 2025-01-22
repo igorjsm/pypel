@@ -2,6 +2,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
+from django.core.mail import send_mail
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
 
@@ -17,7 +18,7 @@ def login(request):
         usuario = authenticate(request, username=email, password=senha)
 
         if usuario is not None and perfil_id:
-            perfis_usuario = usuario.filter(id=perfil_id)
+            perfis_usuario = usuario.perfis.filter(id=perfil_id)
             if perfis_usuario.exists():
                 request.session.flush()
                 auth_login(request, usuario)
@@ -27,7 +28,7 @@ def login(request):
                 request.session["departamento_id_atual"] = usuario.departamento.id
                 request.session["departametno_nome_atual"] = usuario.departamento.nome
                 request.session["departametno_sigla_atual"] = usuario.departamento.sigla
-                request.session["perfil_atual"] = perfil_usuario.first().nome
+                request.session["perfil_atual"] = perfis_usuario.first().nome
                 request.session["perfis"] = list(
                     usuario.perfis.values_list("nome", flat=True)
                 )
@@ -72,3 +73,23 @@ def logout(request):
     messages.success(request, "Logout realizado com sucesso!")
 
     return redirect("autenticacao:login")
+
+
+def recuperar_senha(request):
+    if request.method == "POST":
+        email = request.POST.get("email")
+        try:
+            usuario = Usuario.objects.get(email=email)
+            send_mail(
+                "Recuperação de senha",
+                f"Sua senha é: {usuario.password}",
+                "seu_email@dominio.com",
+                [email],
+                fail_silently=False,
+            )
+            return JsonResponse(
+                {"success": True, "message": "Senha enviada para o email informado."}
+            )
+        except Usuario.DoesNotExist:
+            return JsonResponse({"success": False, "message": "Email não encontrado."})
+    return JsonResponse({"success": False, "message": "Método inválido."})
