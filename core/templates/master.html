@@ -33,28 +33,86 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNavDropdown">
                         <ul class="navbar-nav">
-                            {% if request.session.perfil_atual == 'Administrador' %}
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle"
-                                       href="#"
-                                       id="navbarMenuExemplo"
-                                       role="button"
-                                       data-toggle="dropdown"
-                                       aria-haspopup="true"
-                                       aria-expanded="false">MENU EXEMPLO</a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarMenuExemplo">
-                                        <a class="dropdown-item" href="#">ITEM 1</a>
-                                        <a class="dropdown-item" href="#">ITEM 2</a>
-                                        <a class="dropdown-item" href="#">ITEM 3</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="{% url 'autenticacao:logout' %}">
-                                            <img src="{% static 'img/my_logout.png' %}" width="20px" alt="Logout">
-                                            Sair
-                                        </a>
-                                    </div>
-                                </li>
-                            {% endif %}
-                        </ul>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle"
+                                   href="#"
+                                   id="navbarMenuExemplo"
+                                   role="button"
+                                   data-toggle="dropdown"
+                                   aria-haspopup="true"
+                                   aria-expanded="false">Arquivo</a>
+                                <div class="dropdown-menu" aria-labelledby="navbarMenuExemplo">
+                                    <a class="dropdown-item" href="#">Meus Dados</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="{% url 'autenticacao:logout' %}">
+                                        <img src="{% static 'img/my_logout.png' %}" width="20px" alt="Logout">
+                                        Sair
+                                    </a>
+                                </div>
+                                {% if request.session.perfil_atual == 'Administrador' %}
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle"
+                                           href="#"
+                                           id="navbarMenuExemplo"
+                                           role="button"
+                                           data-toggle="dropdown"
+                                           aria-haspopup="true"
+                                           aria-expanded="false">Pessoal</a>
+                                        <div class="dropdown-menu" aria-labelledby="navbarMenuExemplo">
+                                            <a class="dropdown-item" href="#">Departamentos</a>
+                                            <a class="dropdown-item" href="{% url 'cadastros:departamentos' %}">
+                                                <img src="{% static 'img/users.png' %}" width="20px" alt="Logout">
+                                                Usuários
+                                            </a>
+                                        </div>
+                                    </li>
+                                {% endif %}
+                                {% if request.session.perfil_atual == 'Administrador' or request.session.perfil_atual == 'Estoquista' %}
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle"
+                                           href="#"
+                                           id="navbarMenuExemplo"
+                                           role="button"
+                                           data-toggle="dropdown"
+                                           aria-haspopup="true"
+                                           aria-expanded="false">Estoque</a>
+                                        <div class="dropdown-menu" aria-labelledby="navbarMenuExemplo">
+                                            <a class="dropdown-item" href="#">Produtos</a>
+                                        </div>
+                                    </li>
+                                {% endif %}
+                                {% if request.session.perfil_atual == 'Administrador' or request.session.perfil_atual == 'Vendedor' %}
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle"
+                                           href="#"
+                                           id="navbarMenuExemplo"
+                                           role="button"
+                                           data-toggle="dropdown"
+                                           aria-haspopup="true"
+                                           aria-expanded="false">Vendas</a>
+                                        <div class="dropdown-menu" aria-labelledby="navbarMenuExemplo">
+                                            <a class="dropdown-item" href="#">Vendas</a>
+                                        </div>
+                                    </li>
+                                {% endif %}
+                                {% if request.session.perfil_atual == 'Administrador' %}
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle"
+                                           href="#"
+                                           id="navbarMenuExemplo"
+                                           role="button"
+                                           data-toggle="dropdown"
+                                           aria-haspopup="true"
+                                           aria-expanded="false">Relatórios</a>
+                                        <div class="dropdown-menu" aria-labelledby="navbarMenuExemplo">
+                                            <a class="dropdown-item" href="#">Lista de Usuários</a>
+                                            <a class="dropdown-item" href="#">Balanço</a>
+                                            <a class="dropdown-item" href="#">Contabilidade</a>
+                                        </div>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </li>
                     </div>
                 </nav>
             </header>
